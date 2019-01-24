@@ -49,7 +49,21 @@ namespace Modulo4
             #endregion
 
             #region Ejercicio 7
+            //CursoAMedida cursoAMedida = new CursoAMedida("Programación C#", 1500, 10, "Jesús", 60);
+            //cursoAMedida.MostrarInfo();
+            #endregion
 
+            #region Ejercicio 8
+            //Curso[] matrizCursos;
+            //CursoOnline cursoOnline = new CursoOnline("Programación C#", 1500, 10, "https://www.google.es");
+            //CursoAMedida cursoAMedida = new CursoAMedida("Repaso matemáticas", 15, 80, "Carlos Rodróguez", 60);
+
+            //matrizCursos = new Curso[] { cursoOnline, cursoAMedida };
+
+            //foreach (Curso item in matrizCursos)
+            //{
+            //    item.MostrarInfo();
+            //}
             #endregion
 
             Console.ReadLine();

@@ -7,7 +7,8 @@ using System.Threading.Tasks;
 namespace Modulo4
 {
     //Definición de clase y métodos de mostrar por pantalla para ejercicio 5
-    public class Curso
+    //Cambio a abstract para ejercicio 9
+    public abstract class Curso
     {
         private string titulo;
         private double precio;
@@ -24,7 +25,6 @@ namespace Modulo4
                 titulo = string.IsNullOrWhiteSpace(value) || value.Length > 100 ? "-----" : value;
             }
         }
-
         public double Precio
         {
             get
@@ -60,12 +60,15 @@ namespace Modulo4
             Console.WriteLine("Titulo: " + Titulo);
             Console.WriteLine("Precio: " + precio.ToString());
             Console.WriteLine("Horas: " + Horas.ToString());
+            Console.WriteLine("Precio calculado: " + CalcularPrecio().ToString());
         }
 
-        public virtual double CalcularPrecio()
-        {
-            return Precio;
-        }
+        //Para ejercicio 9 hay que definirlo como abstracto
+        public abstract double CalcularPrecio();
+        //public virtual double CalcularPrecio()
+        //{
+        //    return Precio;
+        //}
     }
 
     //Definición de clase y métodos para ejercicio 6
@@ -94,6 +97,11 @@ namespace Modulo4
         {
             base.MostrarInfo();
             Console.WriteLine("URL: " + URL);
+        }
+
+        public override double CalcularPrecio()
+        {
+            return Precio;
         }
     }
 
@@ -131,9 +139,84 @@ namespace Modulo4
                 else
                 {
                     //numAlumnos = value < 10 ? 10 : value;
-                    numAlumnos = value;
+                    if(value < 10)
+                    {
+                        numAlumnos = 10;
+                    }
+                    else if(value > 100)
+                    {
+                        numAlumnos = 100;
+                    }
+                    else
+                    {
+                        numAlumnos = value;
+                    }
                 }
             }
         }
+
+        public CursoAMedida(string titulo, double precio, int horas, string cliente, byte numalumnos) : base(titulo, precio, horas)
+        {
+            Cliente = cliente;
+            NumAlumnos = numalumnos;
+        }
+
+        public override void MostrarInfo()
+        {
+            base.MostrarInfo();
+            Console.WriteLine("Cliente: " + Cliente);
+            Console.WriteLine("NumAlumnos: " + NumAlumnos.ToString());
+        }
+
+        //Implementacion por ejercicio 9 que clase base es abstracta
+        public override double CalcularPrecio()
+        {
+            if (NumAlumnos > 50)
+            {
+                return 0.6 * Precio;
+            }
+            else if (NumAlumnos > 25)
+            {
+                return 0.8 * Precio;
+            }
+            else
+            {
+                return Precio;
+            }
+        }
+
+        /*public override double CalcularPrecio()
+        {
+            if(NumAlumnos > 50)
+            {
+                return 0.6 * base.CalcularPrecio();
+            }
+            else if(NumAlumnos > 25)
+            {
+                return 0.8 * base.CalcularPrecio();
+            }
+            else
+            {
+                return base.CalcularPrecio();
+            }
+        }*/
+
+        /*//Forzamos redefinición sin usar override
+        public new double CalcularPrecio()
+        {
+            if (NumAlumnos > 50)
+            {
+                return 0.6 * Precio;
+            }
+            else if (NumAlumnos > 25)
+            {
+                return 0.8 * Precio;
+            }
+            else
+            {
+                return Precio;
+            }
+        }
+        */
     }
 }
