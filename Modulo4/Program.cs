@@ -38,6 +38,20 @@ namespace Modulo4
             //Console.WriteLine("El resultado de " + Test1_BaseEj4.ToString() + " elevado a " + Test1_ExpEj4.ToString() + " es " + Test1_ResEj4.ToString());
             #endregion
 
+            #region Ejercicio 5
+            //Curso curso = new Curso(null, -3D, 150000);
+            //curso.MostrarInfo();
+            #endregion
+
+            #region Ejercicio 6
+            //CursoOnline cursoOnline = new CursoOnline(null, -3D, 150000, "https://www.google.es");
+            //cursoOnline.MostrarInfo();
+            #endregion
+
+            #region Ejercicio 7
+
+            #endregion
+
             Console.ReadLine();
         }
 
