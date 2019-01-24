@@ -6,12 +6,12 @@ using System.Runtime.InteropServices;
 // conjunto de atributos. Cambie estos valores de atributo para modificar la información
 // asociada con un ensamblado.
 [assembly: AssemblyTitle("Modulo4")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Ensamblado para solución de ejercicios de bloque 2 - modulo 4")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("everis")]
+[assembly: AssemblyCompany("Extreme Solutions")]
 [assembly: AssemblyProduct("Modulo4")]
-[assembly: AssemblyCopyright("Copyright © everis 2019")]
-[assembly: AssemblyTrademark("")]
+[assembly: AssemblyCopyright("Copyright © Extreme Solutions 2019")]
+[assembly: AssemblyTrademark("Extreme Solutions Trademark")]
 [assembly: AssemblyCulture("")]
 
 // Si establece ComVisible en false, los tipos de este ensamblado no estarán visibles 
