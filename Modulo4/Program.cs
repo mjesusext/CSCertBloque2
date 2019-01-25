@@ -53,10 +53,10 @@ namespace Modulo4
             //cursoAMedida.MostrarInfo();
             #endregion
 
-            #region Ejercicio 8
+            #region Ejercicio 11
             //Curso[] matrizCursos;
             //CursoOnline cursoOnline = new CursoOnline("Programación C#", 1500, 10, "https://www.google.es");
-            //CursoAMedida cursoAMedida = new CursoAMedida("Repaso matemáticas", 15, 80, "Carlos Rodróguez", 60);
+            //CursoAMedida cursoAMedida = new CursoAMedida("Repaso matemáticas", 15, 80, "Carlos Rodríguez", 60);
 
             //matrizCursos = new Curso[] { cursoOnline, cursoAMedida };
 
@@ -66,6 +66,51 @@ namespace Modulo4
             //}
             #endregion
 
+            #region Ejercicio 12 y 13
+            //CursoAMedida cursoAMedida = new CursoAMedida("Repaso matemáticas", 100D, 80, "Carlos Rodríguez");
+            //for (int i = 1; i <= 10; i++)
+            //{
+            //    cursoAMedida.MatricularAlumno(new Alumno("Alumno #" + i.ToString()));
+            //}
+
+            //Console.WriteLine(cursoAMedida[2].Nombre);
+            //Console.WriteLine(cursoAMedida[9].Nombre);
+            #endregion
+
+            #region Ejercicio 14
+            //CursoAMedida cursoAMedida = new CursoAMedida("Repaso matemáticas", 100D, 80, "Carlos Rodríguez");
+            //cursoAMedida.OnMatriculacion += new Curso.MatriculacionEventHandler(MostrarMatriculado);
+            //cursoAMedida.OnMatriculacion += new Curso.MatriculacionEventHandler(MostrarMatriculadoMayus);
+
+            //for (int i = 1; i <= 10; i++)
+            //{
+            //    cursoAMedida.MatricularAlumno(new Alumno("Alumno #" + i.ToString()));
+            //}
+            #endregion
+
+            #region Ejercicio 15
+            CursoAMedida cursoAMedida1 = new CursoAMedida("Repaso matemáticas", 100D, 80, "Carlos Rodríguez");
+            //cursoAMedida1.OnMatriculacion += new Curso.MatriculacionEventHandler(MostrarMatriculado);
+            //cursoAMedida1.OnMatriculacion += new Curso.MatriculacionEventHandler(MostrarMatriculadoMayus);
+
+            CursoAMedida cursoAMedida2 = new CursoAMedida("Repaso matemáticas B", 100D, 80, "Carlos Rodríguez");
+            //cursoAMedida2.OnMatriculacion += new Curso.MatriculacionEventHandler(MostrarMatriculado);
+            //cursoAMedida2.OnMatriculacion += new Curso.MatriculacionEventHandler(MostrarMatriculadoMayus);
+
+            for (int i = 1; i <= 10; i++)
+            {
+                cursoAMedida1.MatricularAlumno(new Alumno("Alumno #" + i.ToString()));
+            }
+
+            for (int i = 1; i <= 4; i++)
+            {
+                cursoAMedida2.MatricularAlumno(new Alumno("Alumno #" + i.ToString()));
+            }
+
+            Console.WriteLine("Total matriculados en cursos " + cursoAMedida1.NumAlumnosTodosCursos.ToString());
+
+            #endregion
+
             Console.ReadLine();
         }
 
@@ -73,8 +118,8 @@ namespace Modulo4
         /// Ejercicio 1 
         /// Suma de valores de matriz. Versión 1 y 2 (arreglando overflow de suma)
         /// </summary>
-        /// <param name="sumandos"></param>
-        /// <returns></returns>
+        /// <param name="sumandos">Vector de valores a sumar</param>
+        /// <returns>Sumatorio de valores de vector</returns>
         public static long Sumar(int[] sumandos)
         {
             Console.WriteLine("----- Ejercicio 1 (sumar V2): inicio -----\n");
@@ -98,9 +143,9 @@ namespace Modulo4
         /// Se ha añadido el primer sumando (opcional) por separado para que la firma Suma(matriz int) no sea exacta y permita sobrecarga.
         /// Con esto se consigue exactamente la misma funcionalidad pero con múltiples parámetros de 0 a N
         /// </summary>
-        /// <param name="primer_sumando">Primer elemento de la suma. Obligatorio</param>
-        /// <param name="resto_sumandos"></param>
-        /// <returns></returns>
+        /// <param name="primer_sumando">Primer elemento de la suma. Opcional</param>
+        /// <param name="resto_sumandos">Vector de resto de sumandos</param>
+        /// <returns>Sumatorio de valores de los argumentos</returns>
         public static long Sumar(int primer_sumando = 0, params int[] resto_sumandos)
         {
             Console.WriteLine("----- Ejercicio 2: inicio -----\n");
@@ -123,8 +168,8 @@ namespace Modulo4
         /// Función para intercambiar valores a las variables. 
         /// Forzamos ref incluso en string para evitar que la immutabilidad de string rompa el intercambio de punteros en el paso por referencia.
         /// </summary>
-        /// <param name="A"></param>
-        /// <param name="B"></param>
+        /// <param name="A">Primer valor</param>
+        /// <param name="B">Segundo valor</param>
         public static void Intercambiar(ref string A, ref string B)
         {
             Console.WriteLine("----- Ejercicio 3: inicio -----\n");
@@ -138,9 +183,9 @@ namespace Modulo4
         /// Ejercicio 4.
         /// Calculo de potencia de numero entero de forma recursiva. Cuidamos overflow con tipo grande (long)
         /// </summary>
-        /// <param name="num"></param>
-        /// <param name="exponente"></param>
-        /// <returns></returns>
+        /// <param name="num">Base</param>
+        /// <param name="exponente">Exponente</param>
+        /// <returns>Resultado base ^ exponente</returns>
         public static long Potencia(int num, int exponente)
         {
             if(exponente == 0)
@@ -153,6 +198,26 @@ namespace Modulo4
                 Console.WriteLine("----- Ejercicio 4: exponente " + exponente.ToString() + " -----");
                 return num * Potencia(num, exponente - 1);
             }
+        }
+
+        /// <summary>
+        /// Ejercicio 14
+        /// Método que gestiona el evento de matriculación mostrando el nombre del matriculado
+        /// </summary>
+        /// <param name="nombre"></param>
+        public static void MostrarMatriculado(string nombre)
+        {
+            Console.WriteLine("Matriculado: " + nombre);
+        }
+
+        /// <summary>
+        /// Ejercicio 14
+        /// Método que gestiona el evento de matriculación mostrando el nombre del matriculado en mayusculas
+        /// </summary>
+        /// <param name="nombre"></param>
+        public static void MostrarMatriculadoMayus(string nombre)
+        {
+            Console.WriteLine("Matriculado: " + nombre.ToUpper());
         }
     }
 }

@@ -14,6 +14,15 @@ namespace Modulo4
         private double precio;
         private int horas;
 
+        //Modificación ejercicio 15. Contador estatico para que toda matriculación la vean entre clases. 
+        //Separamos contadores para no tener problemas con el indizador de la matriz de alumnos
+        private byte numAlumnosCurso;
+        private static byte numAlumnosTodoCursos;
+        private Alumno[] alumnosMatriculados;
+
+        public delegate void AlumnoMatriculadoEventHandler(string nombre);
+        public event AlumnoMatriculadoEventHandler AlumnoMatriculado;
+
         public string Titulo
         {
             get
@@ -47,11 +56,49 @@ namespace Modulo4
                 horas = value < 0 || value > 1000 ? 10 : value;
             }
         }
+
+        //Ejercicio 13
+        public Alumno this[int index]
+        {
+            get
+            {
+                return alumnosMatriculados[index - 1];
+            }
+        }
+
+        //Ejercicio 12
+        public byte NumAlumnosCurso
+        {
+            get
+            {
+                return numAlumnosCurso;
+            }
+        }
+
+        //Ejercicio 15
+        public byte NumAlumnosTodosCursos
+        {
+            get
+            {
+                return numAlumnosTodoCursos;
+            }
+        }
+
         public Curso(string titulo, double precio, int horas)
         {
             Titulo = titulo;
             Precio = precio;
             Horas = horas;
+
+            //Ejercicio 12. Aseguramos valores iniciales de variables. Matriz con capacidad básica
+            numAlumnosCurso = 0;
+            alumnosMatriculados = new Alumno[20];
+        }
+
+        //Ejercicio 15. Constructor estatico para no machacar la variable estatica cada vez que instancio un tipo de curso
+        static Curso()
+        {
+            numAlumnosTodoCursos = 0;
         }
 
         public virtual void MostrarInfo()
@@ -61,6 +108,22 @@ namespace Modulo4
             Console.WriteLine("Precio: " + precio.ToString());
             Console.WriteLine("Horas: " + Horas.ToString());
             Console.WriteLine("Precio calculado: " + CalcularPrecio().ToString());
+        }
+
+        //Ejercicio 12
+        public void MatricularAlumno(Alumno alumno)
+        {
+            //Evaluamos cantidad alumnos para seleccionar posición de matriz, después incrementamos
+            alumnosMatriculados[numAlumnosCurso++] = alumno;
+
+            //Ejercicio 15. Sumamos contador absoluto de alumnado
+            numAlumnosTodoCursos++;
+
+            //Ejercicio 14. Evento de matriculación si hay suscriptores
+            if (AlumnoMatriculado != null)
+            {
+                AlumnoMatriculado(alumno.Nombre);
+            }
         }
 
         //Para ejercicio 9 hay que definirlo como abstracto
@@ -124,7 +187,8 @@ namespace Modulo4
             }
         }
 
-        public byte NumAlumnos
+        //Ejercicio 12. Mover definición a clase base en solo lectura y sin reglas de negocio
+        /*public byte NumAlumnos
         {
             get
             {
@@ -153,29 +217,30 @@ namespace Modulo4
                     }
                 }
             }
-        }
+        }*/
 
-        public CursoAMedida(string titulo, double precio, int horas, string cliente, byte numalumnos) : base(titulo, precio, horas)
+        //Ejercicio 12. Ponemos numAlumnos opcional para evitar modificar demasiado la clase
+        public CursoAMedida(string titulo, double precio, int horas, string cliente, byte numalumnos = 0) : base(titulo, precio, horas)
         {
             Cliente = cliente;
-            NumAlumnos = numalumnos;
+            //NumAlumnos = numalumnos;
         }
 
         public override void MostrarInfo()
         {
             base.MostrarInfo();
             Console.WriteLine("Cliente: " + Cliente);
-            Console.WriteLine("NumAlumnos: " + NumAlumnos.ToString());
+            Console.WriteLine("NumAlumnos: " + NumAlumnosCurso.ToString());
         }
 
         //Implementacion por ejercicio 9 que clase base es abstracta
         public override double CalcularPrecio()
         {
-            if (NumAlumnos > 50)
+            if (NumAlumnosCurso > 50)
             {
                 return 0.6 * Precio;
             }
-            else if (NumAlumnos > 25)
+            else if (NumAlumnosCurso > 25)
             {
                 return 0.8 * Precio;
             }
