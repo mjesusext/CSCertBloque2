@@ -20,8 +20,11 @@ namespace Modulo4
         private static byte numAlumnosTodoCursos;
         private Alumno[] alumnosMatriculados;
 
-        public delegate void AlumnoMatriculadoEventHandler(string nombre);
-        public event AlumnoMatriculadoEventHandler AlumnoMatriculado;
+        //Ejercicio propio: crear evento sin delegado a medida (uso de func)
+        public event Action<string> AlumnoMatriculado;
+
+        //public delegate void AlumnoMatriculadoEventHandler(string nombre);
+        //public event AlumnoMatriculadoEventHandler AlumnoMatriculado;
 
         public string Titulo
         {

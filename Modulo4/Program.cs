@@ -79,8 +79,8 @@ namespace Modulo4
 
             #region Ejercicio 14
             //CursoAMedida cursoAMedida = new CursoAMedida("Repaso matemáticas", 100D, 80, "Carlos Rodríguez");
-            //cursoAMedida.OnMatriculacion += new Curso.MatriculacionEventHandler(MostrarMatriculado);
-            //cursoAMedida.OnMatriculacion += new Curso.MatriculacionEventHandler(MostrarMatriculadoMayus);
+            //cursoAMedida.AlumnoMatriculado += new Curso.MatriculacionEventHandler(MostrarMatriculado);
+            //cursoAMedida.AlumnoMatriculado += new Curso.MatriculacionEventHandler(MostrarMatriculadoMayus);
 
             //for (int i = 1; i <= 10; i++)
             //{
@@ -89,13 +89,37 @@ namespace Modulo4
             #endregion
 
             #region Ejercicio 15
+            //CursoAMedida cursoAMedida1 = new CursoAMedida("Repaso matemáticas", 100D, 80, "Carlos Rodríguez");
+            ////cursoAMedida1.AlumnoMatriculado += new Curso.MatriculacionEventHandler(MostrarMatriculado);
+            ////cursoAMedida1.AlumnoMatriculado += new Curso.MatriculacionEventHandler(MostrarMatriculadoMayus);
+
+            //CursoAMedida cursoAMedida2 = new CursoAMedida("Repaso matemáticas B", 100D, 80, "Carlos Rodríguez");
+            ////cursoAMedida2.AlumnoMatriculado += new Curso.MatriculacionEventHandler(MostrarMatriculado);
+            ////cursoAMedida2.AlumnoMatriculado += new Curso.MatriculacionEventHandler(MostrarMatriculadoMayus);
+
+            //for (int i = 1; i <= 10; i++)
+            //{
+            //    cursoAMedida1.MatricularAlumno(new Alumno("Alumno #" + i.ToString()));
+            //}
+
+            //for (int i = 1; i <= 4; i++)
+            //{
+            //    cursoAMedida2.MatricularAlumno(new Alumno("Alumno #" + i.ToString()));
+            //}
+
+            //Console.WriteLine("Total matriculados en cursos " + cursoAMedida1.NumAlumnosTodosCursos.ToString());
+
+            #endregion
+
+            #region Ejercicio propio: delegado declarado como Action
+            
             CursoAMedida cursoAMedida1 = new CursoAMedida("Repaso matemáticas", 100D, 80, "Carlos Rodríguez");
-            //cursoAMedida1.OnMatriculacion += new Curso.MatriculacionEventHandler(MostrarMatriculado);
-            //cursoAMedida1.OnMatriculacion += new Curso.MatriculacionEventHandler(MostrarMatriculadoMayus);
+            cursoAMedida1.AlumnoMatriculado += MostrarMatriculado;
+            cursoAMedida1.AlumnoMatriculado += MostrarMatriculadoMayus;
 
             CursoAMedida cursoAMedida2 = new CursoAMedida("Repaso matemáticas B", 100D, 80, "Carlos Rodríguez");
-            //cursoAMedida2.OnMatriculacion += new Curso.MatriculacionEventHandler(MostrarMatriculado);
-            //cursoAMedida2.OnMatriculacion += new Curso.MatriculacionEventHandler(MostrarMatriculadoMayus);
+            cursoAMedida2.AlumnoMatriculado += MostrarMatriculado;
+            cursoAMedida2.AlumnoMatriculado += MostrarMatriculadoMayus;
 
             for (int i = 1; i <= 10; i++)
             {
@@ -108,7 +132,6 @@ namespace Modulo4
             }
 
             Console.WriteLine("Total matriculados en cursos " + cursoAMedida1.NumAlumnosTodosCursos.ToString());
-
             #endregion
 
             Console.ReadLine();
