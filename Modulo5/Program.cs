@@ -24,7 +24,8 @@ namespace Modulo5
             #endregion
 
             //Ejercicio8();
-            Ejercicio10a17();
+            //Ejercicio10a17();
+            Ejercicio18();
 
             Console.ReadLine();
         }
@@ -127,12 +128,22 @@ namespace Modulo5
 
             sup1.Volar();
             sup1.Aletear();
+
             sup2.Volar();
             //sup2.Aletear(); //Da error porque hemos dicho que apunte a una referencia tratándolo como un tipo. Exactamente la implementación de la interfaz
             sup3.Volar();
             sup3.Aletear();
 
 
+        }
+
+        public static void Ejercicio18()
+        {
+            string cadena = "En un lugar de La Mancha de cuyo nombre no quiero acordarme";
+            Console.WriteLine(cadena.EstaVacia());
+            Console.WriteLine(cadena.Invertir());
+            Console.WriteLine(cadena.Left(11));
+            Console.WriteLine(cadena.Right(9));
         }
     }
 }
