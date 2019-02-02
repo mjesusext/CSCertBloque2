@@ -12,18 +12,17 @@ namespace Modulo5
         public byte g { get; set; }
         public byte b { get; set; }
 
-        public Color()
-        {
-            r = 0;
-            g = 0;
-            b = 0;
-        }
-
         public Color(byte R, byte G, byte B)
         {
             r = R;
             g = G;
             b = B;
+        }
+
+        //Modificación ejercicio 6
+        public override string ToString()
+        {
+            return "rgb(" + r.ToString() + "," + g.ToString() + "," + b.ToString() + ")";
         }
     }
 }

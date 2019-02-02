@@ -12,17 +12,17 @@ namespace Modulo5
         public int y { get; set; }
         public Color color { get; set; }
 
-        public Pixel()
-        {
-            x = 0;
-            y = 0;
-            color = new Color();
-        }
-
         public Pixel(int X, int Y, Color Color)
         {
             x = X;
             y = Y;
+            color = Color;
+        }
+
+        //Modificación ejercicio 7
+        public override string ToString()
+        {
+            return "(" + x.ToString() + "," + y.ToString() + ") - " + color.ToString();
         }
     }
 }
