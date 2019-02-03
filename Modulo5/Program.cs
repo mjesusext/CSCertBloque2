@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace Modulo5
@@ -25,7 +26,9 @@ namespace Modulo5
 
             //Ejercicio8();
             //Ejercicio10a17();
-            Ejercicio18();
+            //Ejercicio18();
+            //Ejercicio19();
+            Ejercicio20();
 
             Console.ReadLine();
         }
@@ -144,6 +147,40 @@ namespace Modulo5
             Console.WriteLine(cadena.Invertir());
             Console.WriteLine(cadena.Left(11));
             Console.WriteLine(cadena.Right(9));
+        }
+
+        public static void Ejercicio19()
+        {
+            string test = "mjesusext@gmail.com m.j.extreme@subdom.everis.es a@b.com usuario.principal@usuarios.empresa.com";
+            string exp = @"(?<nombre>[\w\.-]{1,})@(?<dominio>\w{1,}\.\w{2,}\b)"; //Verbatim para simplificar la expresion
+
+            Regex reg = new Regex(exp);
+            Match res = reg.Match(test);
+
+            while (res.Success)
+            {
+                Console.WriteLine("Coincidencia: " + res.Value);
+                Console.WriteLine("Nombre de cuenta: " + res.Groups["nombre"].Value);
+                Console.WriteLine("Nombre de dominio: " + res.Groups["dominio"].Value);
+                res = res.NextMatch();
+            }
+        }
+
+        public static void Ejercicio20()
+        {
+            string testA = "En un lugar de <b>La Mancha</b> de cuyo <a href=\"http://www.lamancha.es\">nombre</a> no quiero acordarme...";
+            string testB = "En un lugar de <span>La Mancha</span> de cuyo nombre <span>no</span> quiero acordarme...";
+            string exp = @"<\w+>(?<valor>w+)</w+>";
+            //   <([\w]+\b)>[\w\W]+<\/\1>
+
+            Regex reg = new Regex(exp);
+            Match res = reg.Match(testA);
+
+            while (res.Success)
+            {
+                Console.WriteLine("Coincidencia: " + res.Value);
+                res = res.NextMatch();
+            }
         }
     }
 }
