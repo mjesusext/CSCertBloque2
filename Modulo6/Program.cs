@@ -52,6 +52,28 @@ namespace Modulo6
 
             #endregion
 
+            #region Ejercicio 3
+            Profesor p1 = new Profesor()
+            {
+                Nombre = "Calos",
+                Apellidos = "Rodríguez",
+                FechaNacimiento = DateTime.Now
+            };
+
+            Conserje c1 = new Conserje()
+            {
+                Nombre = "Calos",
+                Apellidos = "Rodríguez",
+                FechaNacimiento = DateTime.Now
+            };
+
+            Comparador<IFuncionario> comp = new Comparador<IFuncionario>();
+            comp.itemA = p1;
+            comp.itemB = c1;
+
+            Console.WriteLine("Comparación de profesor y conserje aprovechando clase: {0}", comp.Igualdad());
+            #endregion
+
             Console.ReadLine();
         }
 
