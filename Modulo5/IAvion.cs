@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Modulo5
 {
-    interface IAvion
+    public interface IAvion
     {
         void Volar();
     }

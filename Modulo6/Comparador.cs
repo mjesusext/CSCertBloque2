@@ -6,11 +6,9 @@ using System.Threading.Tasks;
 
 namespace Modulo6
 {
-    public interface IFuncionario
+    public class Comparador<T>
+        where T : IFuncionario
     {
-        string Nombre { get; set; }
-        string Apellidos { get; set; }
 
-        void CotejarDocumentos();
     }
 }

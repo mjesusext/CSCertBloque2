@@ -1,6 +1,6 @@
 ﻿namespace Modulo6
 {
-    interface IContribuyente<T>
+    public interface IContribuyente<T>
         where T : struct
     {
         T Referencia { get; set; }

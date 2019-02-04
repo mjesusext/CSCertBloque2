@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Modulo5
 {
-    interface IPajaro
+    public interface IPajaro
     {
         void Volar();
         void Aletear();
