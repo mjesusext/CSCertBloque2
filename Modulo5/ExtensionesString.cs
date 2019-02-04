@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Modulo5
 {
-    static class ExtensionesString
+    public static class ExtensionesString
     {
         public static string Invertir(this string str)
         {

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Modulo5
 {
     [Flags]
-    enum TipoUsuario
+    public enum TipoUsuario
     {
         Lector = 0, //Valor básico, sino creariamos un Ninguno a parte de Lector
         OperadorInformes = 2,
@@ -15,7 +15,7 @@ namespace Modulo5
         Administrador = 8 //Tambien se podria hacer 8 + 4 + 2 (tres bits independientes a 1 y englobar lo anterior)
     }
 
-    class Usuario
+    public class Usuario
     {
         public string Nombre { get; set; }
         public TipoUsuario Tipo { get; set; }

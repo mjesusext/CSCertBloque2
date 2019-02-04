@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Modulo5
 {
-    class Color
+    public class Color
     {
         public byte r { get; set; }
         public byte g { get; set; }

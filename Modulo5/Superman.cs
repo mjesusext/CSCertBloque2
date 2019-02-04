@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Modulo5
 {
-    class Superman : IAvion , IPajaro
+    public class Superman : IAvion , IPajaro
     {
         public void Aletear()
         {
