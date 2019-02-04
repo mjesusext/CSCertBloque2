@@ -154,6 +154,8 @@ namespace Modulo5
             string test = "mjesusext@gmail.com m.j.extreme@subdom.everis.es a@b.com usuario.principal@usuarios.empresa.com";
             string exp = @"(?<nombre>[\w\.-]{1,})@(?<dominio>\w{1,}\.\w{2,}\b)"; //Verbatim para simplificar la expresion
 
+            //   ([\w\.-_]{1,})@([\w\.]+\b)
+
             Regex reg = new Regex(exp);
             Match res = reg.Match(test);
 
@@ -171,7 +173,8 @@ namespace Modulo5
             string testA = "En un lugar de <b>La Mancha</b> de cuyo <a href=\"http://www.lamancha.es\">nombre</a> no quiero acordarme...";
             string testB = "En un lugar de <span>La Mancha</span> de cuyo nombre <span>no</span> quiero acordarme...";
             string exp = @"<\w+>(?<valor>w+)</w+>";
-            //   <([\w]+\b)>[\w\W]+<\/\1>
+
+            //   <([\w]+\b).*>(.+)<\/\1>
 
             Regex reg = new Regex(exp);
             Match res = reg.Match(testA);
