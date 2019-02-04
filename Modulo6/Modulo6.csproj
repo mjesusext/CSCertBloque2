@@ -43,6 +43,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ClasesEjemploTeoria\Alumno.cs" />
+    <Compile Include="ClasesEjemploTeoria\Conserje.cs" />
+    <Compile Include="ClasesEjemploTeoria\IContribuyente.cs" />
+    <Compile Include="ClasesEjemploTeoria\IFuncionario.cs" />
+    <Compile Include="ClasesEjemploTeoria\Persona.cs" />
+    <Compile Include="ClasesEjemploTeoria\Profesor.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -50,10 +56,15 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Modulo4\Modulo4.csproj">
+      <Project>{2264b504-d4dd-408f-b642-218c8a41a8bb}</Project>
+      <Name>Modulo4</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Modulo5\Modulo5.csproj">
       <Project>{d7338541-dec5-4038-af4e-45e6a49bc0d2}</Project>
       <Name>Modulo5</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
