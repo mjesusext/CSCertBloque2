@@ -28,14 +28,14 @@ namespace Modulo6
 
             //Alumno a1 = new Alumno()
             //{
-            //    Nombre = "Calos",
+            //    Nombre = "Carlos",
             //    Apellidos = "Rodríguez",
             //    FechaNacimiento = DateTime.Now
             //};
 
             //Profesor p1 = new Profesor()
             //{
-            //    Nombre = "Calos",
+            //    Nombre = "Carlos",
             //    Apellidos = "Rodríguez",
             //    FechaNacimiento = DateTime.Now
             //};
@@ -53,25 +53,107 @@ namespace Modulo6
             #endregion
 
             #region Ejercicio 3
-            Profesor p1 = new Profesor()
+            //Profesor p1 = new Profesor()
+            //{
+            //    Nombre = "Carlos",
+            //    Apellidos = "Rodríguez",
+            //    FechaNacimiento = DateTime.Now
+            //};
+
+            //Conserje c1 = new Conserje()
+            //{
+            //    Nombre = "Carlos",
+            //    Apellidos = "Rodríguez",
+            //    FechaNacimiento = DateTime.Now
+            //};
+
+            //Comparador<IFuncionario> comp = new Comparador<IFuncionario>();
+            //comp.itemA = p1;
+            //comp.itemB = c1;
+
+            //Console.WriteLine("Comparación de profesor y conserje aprovechando clase: {0}", comp.Igualdad());
+            #endregion
+
+            #region Ejercicio 4
+
+            //Profesor p1 = new Profesor()
+            //{
+            //    Nombre = "Carlos",
+            //    Apellidos = "Rodríguez",
+            //    FechaNacimiento = DateTime.Now
+            //};
+
+            //Conserje c1 = new Conserje()
+            //{
+            //    Nombre = "Carlos",
+            //    Apellidos = "Rodríguez",
+            //    FechaNacimiento = DateTime.Now
+            //};
+
+            //Comparador<IFuncionario> comp = new Comparador<IFuncionario>();
+            //comp.itemA = p1;
+            //comp.itemB = c1;
+
+            //Console.WriteLine("Union de profesor y conserje aprovechando clase: {0}", comp.UnirValores<IFuncionario>(p1,c1));
+            //Console.WriteLine("Union de strings: {0}", comp.UnirValores<string>("Hola","Mundo"));
+            //Console.WriteLine("Union de enteros (suma): {0}", comp.UnirValores<int>(1, 2));
+            //Console.WriteLine("Union de fechas (resta A - B): {0}", comp.UnirValores<DateTime>(DateTime.Today, DateTime.MinValue));
+
+            #endregion
+
+            #region Ejercicio 5
+
+            //Profesor p1 = new Profesor()
+            //{
+            //    Nombre = "Carlos",
+            //    Apellidos = "Rodríguez",
+            //    FechaNacimiento = DateTime.Now
+            //};
+
+            //Conserje c1 = new Conserje()
+            //{
+            //    Nombre = "Carlos",
+            //    Apellidos = "Rodríguez",
+            //    FechaNacimiento = DateTime.Now
+            //};
+
+            //Comparador<IFuncionario,string> comp = new Comparador<IFuncionario,string>();
+            //comp.valA = "Hola";
+            //comp.valB = "Mundo";
+
+            //Console.WriteLine("Union de strings: {0}", comp.UnirValoresEj5());
+
+            #endregion
+
+            #region Ejercicio 6
+
+            //Random rand = new Random();
+
+            //Ejercicio6<int>(new int[3] { 10, 20, 30 }, rand.Next(0,2));
+            //Ejercicio6<decimal>(new decimal[3] { 10, 20, 30 }, rand.Next(0,2));
+            //Ejercicio6<string>(new string[3] { "10", "20", "30" }, rand.Next(0,2));
+
+            #endregion
+
+            #region Ejercicio 7
+
+            PersonaB<int> PB_entero = new PersonaB<int>()
             {
-                Nombre = "Calos",
-                Apellidos = "Rodríguez",
-                FechaNacimiento = DateTime.Now
+                Nombre = "Miguel",
+                Peso = 60,
+                Altura = 1
             };
 
-            Conserje c1 = new Conserje()
+            PersonaB<decimal> PB_decimal = new PersonaB<decimal>()
             {
-                Nombre = "Calos",
-                Apellidos = "Rodríguez",
-                FechaNacimiento = DateTime.Now
+                Nombre = "Andrés",
+                Peso = 73.4M,
+                Altura = 1.67M
             };
 
-            Comparador<IFuncionario> comp = new Comparador<IFuncionario>();
-            comp.itemA = p1;
-            comp.itemB = c1;
-
-            Console.WriteLine("Comparación de profesor y conserje aprovechando clase: {0}", comp.Igualdad());
+            PB_entero.MostrarDatosFisicos();
+            PB_decimal.MostrarDatosFisicos();
+            
             #endregion
 
             Console.ReadLine();
@@ -96,6 +178,19 @@ namespace Modulo6
         {
             return inputA.Nombre == inputB.Nombre &&
                    inputA.Apellidos == inputB.Apellidos;
+        }
+
+        //Ejercicio 6
+        public static void Ejercicio6<Tarray>(Tarray[] cadena, int pos)
+        {
+            if(cadena.GetType().GetElementType() != typeof(string) && cadena.GetType().GetElementType() != typeof(int))
+            {
+                Console.WriteLine("Tipo incorrecto");
+            }
+            else
+            {
+                Console.WriteLine("El valor es " + cadena[pos].ToString());
+            }
         }
     }
 }

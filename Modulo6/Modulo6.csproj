@@ -50,6 +50,8 @@
     <Compile Include="ClasesEjemploTeoria\Persona.cs" />
     <Compile Include="ClasesEjemploTeoria\Profesor.cs" />
     <Compile Include="Comparador.cs" />
+    <Compile Include="IPersonaFisica.cs" />
+    <Compile Include="PersonaB.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
