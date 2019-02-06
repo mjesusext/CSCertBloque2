@@ -27,7 +27,7 @@ namespace Modulo5
             //Ejercicio8();
             //Ejercicio10a17();
             //Ejercicio18();
-            //Ejercicio19();
+            Ejercicio19();
             Ejercicio20();
 
             Console.ReadLine();
@@ -152,9 +152,7 @@ namespace Modulo5
         public static void Ejercicio19()
         {
             string test = "mjesusext@gmail.com m.j.extreme@subdom.everis.es a@b.com usuario.principal@usuarios.empresa.com";
-            string exp = @"(?<nombre>[\w\.-]{1,})@(?<dominio>\w{1,}\.\w{2,}\b)"; //Verbatim para simplificar la expresion
-
-            //   ([\w\.-_]{1,})@([\w\.]+\b)
+            string exp = @"(?<usuario>[\w\._-]+)@(\w*\.)*(?<dominio>\w+\.\w+)+"; //Verbatim para simplificar la expresion
 
             Regex reg = new Regex(exp);
             Match res = reg.Match(test);
@@ -162,7 +160,7 @@ namespace Modulo5
             while (res.Success)
             {
                 Console.WriteLine("Coincidencia: " + res.Value);
-                Console.WriteLine("Nombre de cuenta: " + res.Groups["nombre"].Value);
+                Console.WriteLine("Nombre de cuenta: " + res.Groups["usuario"].Value);
                 Console.WriteLine("Nombre de dominio: " + res.Groups["dominio"].Value);
                 res = res.NextMatch();
             }
@@ -172,7 +170,7 @@ namespace Modulo5
         {
             string testA = "En un lugar de <b>La Mancha</b> de cuyo <a href=\"http://www.lamancha.es\">nombre</a> no quiero acordarme...";
             string testB = "En un lugar de <span>La Mancha</span> de cuyo nombre <span>no</span> quiero acordarme...";
-            string exp = @"<\w+>(?<valor>w+)</w+>";
+            string exp = @"<.*?>(?<extraer>.*?)<\/.*?>";
 
             //   <([\w]+\b).*>(.+)<\/\1>
 
@@ -181,7 +179,15 @@ namespace Modulo5
 
             while (res.Success)
             {
-                Console.WriteLine("Coincidencia: " + res.Value);
+                Console.WriteLine("Coincidencia: " + res.Groups["extraer"].Value);
+                res = res.NextMatch();
+            }
+
+            res = reg.Match(testB);
+
+            while (res.Success)
+            {
+                Console.WriteLine("Coincidencia: " + res.Groups["extraer"].Value);
                 res = res.NextMatch();
             }
         }
