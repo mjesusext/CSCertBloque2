@@ -12,7 +12,11 @@ namespace Modulo7
         static void Main(string[] args)
         {
             //Ejercicio1();
-            Ejercicio2();
+            //Ejercicio2();
+            //Ejercicio3();
+            //Ejercicio4A();
+            //Ejercicio4B();
+            //Ejercicio4C();
 
             Console.ReadLine();
         }
@@ -156,6 +160,280 @@ namespace Modulo7
             }
 
             Console.WriteLine("----- Ejercicio 2: final -----");
+        }
+
+        public static void Ejercicio3()
+        {
+            Console.WriteLine("----- Ejercicio 3: inicio -----");
+
+            bool next_action = true;
+            Queue q = new Queue();
+
+            while (next_action)
+            {
+                Console.WriteLine("Seleccione modo:\n1 - Añadir persona\n2 - Dar paso a siguiente en cola\n3 - Finalizar programa ");
+
+                int mode = 0;
+                bool okInput = int.TryParse(Console.ReadLine(), out mode);
+
+                if (!okInput)
+                {
+                    Console.WriteLine("Entrada diferente de valor entero");
+                    continue;
+                }
+
+                switch (mode)
+                {
+                    case 1:
+                        string nombre = "", apellidos = "", dni = "";
+
+                        while (string.IsNullOrWhiteSpace(nombre))
+                        {
+                            Console.Write("Introduzca nombre: ");
+                            nombre = Console.ReadLine();
+                        }
+
+                        while (string.IsNullOrWhiteSpace(apellidos))
+                        {
+                            Console.Write("Introduzca apellidos: ");
+                            apellidos = Console.ReadLine();
+                        }
+
+                        while (string.IsNullOrWhiteSpace(dni))
+                        {
+                            Console.Write("Introduzca DNI: ");
+                            dni = Console.ReadLine();
+                        }
+                        
+                        q.Enqueue(new PersonaM7(nombre, apellidos, dni));
+
+                        Console.WriteLine("Personas en cola: " + q.Count.ToString());
+                        break;
+                    case 2:
+                        if(q.Count > 0)
+                        {
+                            PersonaM7 sel_pers = (PersonaM7)q.Dequeue();
+                            Console.WriteLine("Siguiente turno para: " + sel_pers.ToString());
+                        }
+                       
+                        Console.WriteLine("Personas en cola: " + q.Count.ToString());
+                        break;
+                    case 3:
+                        next_action = false;
+
+                        break;
+                    default:
+                        Console.WriteLine("Valor fuera de rango.");
+                        break;
+                }
+            }
+
+            Console.WriteLine("----- Ejercicio 3: final -----");
+        }
+
+        public static void Ejercicio4A()
+        {
+            Console.WriteLine("----- Ejercicio 4A: inicio -----");
+
+            bool okInput = true;
+            int maxVal, minVal;
+            double avgVal;
+            List<int> list = new List<int>();
+
+            Console.WriteLine("Introduzca números mayores o iguales a cero. Si introduce valor negativo se procede al cálculo del valor máximo, mínimo, media y cantidad de elementos introducidos");
+
+            while (true)
+            {
+                int inputNum;
+                Console.Write("Introduzca valor: ");
+                okInput = int.TryParse(Console.ReadLine(), out inputNum);
+
+                if (okInput)
+                {
+                    if (inputNum < 0)
+                    {
+                        break;
+                    }
+
+                    list.Add(inputNum);
+                }
+                else
+                {
+                    Console.WriteLine("Valor de tipo no entero. Reinténtelo");
+                }
+            }
+
+            maxVal = list[0];
+            minVal = list[0];
+            avgVal = 0D;
+
+            for (int i = 1; i < list.Count; i++)
+            {
+                maxVal = list[i] > maxVal ? list[i] : maxVal;
+                minVal = list[i] < minVal ? list[i] : minVal;
+                avgVal += list[i];
+            }
+
+            avgVal /= list.Count;
+
+            Console.WriteLine("Valor mínimo: " + minVal);
+            Console.WriteLine("Valor máximo: " + maxVal);
+            Console.WriteLine("Valor medio: " + avgVal);
+            Console.WriteLine("----- Ejercicio 4A: final -----");
+        }
+
+        public static void Ejercicio4B()
+        {
+            Console.WriteLine("----- Ejercicio 4B: inicio -----");
+
+            bool okInput = true;
+            int pos = 1, maxLen = 0, minLen = 0;
+            double avgLen = 0D;
+            Dictionary<int,string> dictTbl = new Dictionary<int, string>();
+
+            Console.WriteLine("Introduzca nombres de usuario. Cuando se introduzca valor en blanco se parará de añadir nombres");
+
+            while (okInput)
+            {
+                string strInput = Console.ReadLine();
+
+                if (string.IsNullOrWhiteSpace(strInput))
+                {
+                    break;
+                }
+                else
+                {
+                    dictTbl.Add(pos++, strInput);
+                }
+            }
+
+            foreach (KeyValuePair<int,string> item in dictTbl)
+            {
+                maxLen = item.Value.Length > maxLen ? item.Value.Length : maxLen;
+                minLen = item.Value.Length < minLen ? item.Value.Length : minLen;
+                avgLen += item.Value.Length;
+            }
+
+            avgLen /= dictTbl.Count;
+
+            Console.WriteLine("Longitud nombre más largo: " + maxLen);
+            Console.WriteLine("Longitud nombre más corto: " + minLen);
+            Console.WriteLine("Cantidad nombres: " + dictTbl.Count);
+
+            while (true)
+            {
+                Console.WriteLine("Introduzca posición que desea recuperar (en mayuscuylas). En caso de querer finalizar, introduzca 0");
+
+                int inputNum;
+                okInput = int.TryParse(Console.ReadLine(), out inputNum);
+
+                if (okInput)
+                {
+                    if (inputNum == 0)
+                    {
+                        break;
+                    }
+                    else if (inputNum < 0)
+                    {
+                        Console.WriteLine("Valor introducido no es positivo. Reinténtelo");
+                    }
+                    else
+                    {
+                        string temp_long = string.Empty;
+
+                        if (dictTbl[inputNum].Length > avgLen)
+                        {
+                            temp_long = "superior";
+                        }
+                        else if (dictTbl[inputNum].Length < avgLen)
+                        {
+                            temp_long = "inferior";
+                        }
+                        else
+                        {
+                            temp_long = "igual";
+                        }
+
+                        Console.WriteLine("Valor recuperado: " + dictTbl[inputNum].ToUpper());
+                        Console.WriteLine("Longitud respecto media: " + temp_long);
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Valor introducido no numérico. Reinténtelo");
+                }
+
+            }
+
+            Console.WriteLine("----- Ejercicio 4B: final -----");
+        }
+
+        public static void Ejercicio4C()
+        {
+            Console.WriteLine("----- Ejercicio 4C: inicio -----");
+
+            bool next_action = true;
+            Queue<PersonaM7> q = new Queue<PersonaM7>();
+
+            while (next_action)
+            {
+                Console.WriteLine("Seleccione modo:\n1 - Añadir persona\n2 - Dar paso a siguiente en cola\n3 - Finalizar programa ");
+
+                int mode = 0;
+                bool okInput = int.TryParse(Console.ReadLine(), out mode);
+
+                if (!okInput)
+                {
+                    Console.WriteLine("Entrada diferente de valor entero");
+                    continue;
+                }
+
+                switch (mode)
+                {
+                    case 1:
+                        string nombre = "", apellidos = "", dni = "";
+
+                        while (string.IsNullOrWhiteSpace(nombre))
+                        {
+                            Console.Write("Introduzca nombre: ");
+                            nombre = Console.ReadLine();
+                        }
+
+                        while (string.IsNullOrWhiteSpace(apellidos))
+                        {
+                            Console.Write("Introduzca apellidos: ");
+                            apellidos = Console.ReadLine();
+                        }
+
+                        while (string.IsNullOrWhiteSpace(dni))
+                        {
+                            Console.Write("Introduzca DNI: ");
+                            dni = Console.ReadLine();
+                        }
+
+                        q.Enqueue(new PersonaM7(nombre, apellidos, dni));
+
+                        Console.WriteLine("Personas en cola: " + q.Count.ToString());
+                        break;
+                    case 2:
+                        if (q.Count > 0)
+                        {
+                            Console.WriteLine("Siguiente turno para: " + q.Dequeue().ToString());
+                        }
+
+                        Console.WriteLine("Personas en cola: " + q.Count.ToString());
+                        break;
+                    case 3:
+                        next_action = false;
+
+                        break;
+                    default:
+                        Console.WriteLine("Valor fuera de rango.");
+                        break;
+                }
+            }
+
+            Console.WriteLine("----- Ejercicio 4C: final -----");
         }
     }
 }
