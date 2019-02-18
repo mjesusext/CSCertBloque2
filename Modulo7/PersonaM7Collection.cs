@@ -155,17 +155,30 @@ namespace Modulo7
 
         public void Insert(int index, PersonaM7 item)
         {
-            throw new NotImplementedException();
-            //if ((_count + 1 <= _contents.Length) && (index < Count) && (index >= 0))
-            //{
-            //    _count++;
+            //Verificamos si hay espacio contando el elemento a insertar. Si no es así, redimensionamos matriz.
+            if(quantity + 1 > data.Length)
+            {
+                ResizeData(true);
+            }
+            
+            //Indice dentro de rango
+            if (index < data.Length &&
+                index >= 0)
+            {
+                //Desplazamos una posición hacia arriba hasta llegar al punto donde debemos insertar el valor
+                for (int i = data.Length - 1; i > index; i--)
+                {
+                    data[i] = data[i - 1];
+                }
 
-            //    for (int i = Count - 1; i > index; i--)
-            //    {
-            //        _contents[i] = _contents[i - 1];
-            //    }
-            //    _contents[index] = value;
-            //}
+                //Insertamos y aumentamos contador
+                data[index] = item;
+                quantity++;
+            }
+            else
+            {
+                throw new ArgumentException("Indice fuera de rango");
+            }
         }
 
         public bool Remove(PersonaM7 item)
