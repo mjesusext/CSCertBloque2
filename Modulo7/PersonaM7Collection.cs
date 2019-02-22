@@ -66,6 +66,7 @@ namespace Modulo7
 
         private void ResizeData(bool expand)
         {
+            int copy_pos = 0;
             PersonaM7[] tmp_buffer;
 
             if (expand)
@@ -81,7 +82,7 @@ namespace Modulo7
                 {
                     if(data[i] != null)
                     {
-                        tmp_buffer[i] = data[i];
+                        tmp_buffer[copy_pos++] = data[i];
                     }
                 }
             }
@@ -129,7 +130,10 @@ namespace Modulo7
         {
             for (int i = 0; i < data.Length; i++)
             {
-                yield return data[i];
+                if(data[i] != null)
+                {
+                    yield return data[i];
+                }
             }
         }
 
@@ -192,6 +196,8 @@ namespace Modulo7
             else
             {
                 data[pos] = null;
+                quantity--;
+
                 ResizeData(false);
                 return true;
             }
@@ -202,6 +208,8 @@ namespace Modulo7
             if(index >= 0 || index <= quantity - 1)
             {
                 data[index] = null;
+                quantity--;
+
                 ResizeData(false);
             }
             else

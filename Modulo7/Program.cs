@@ -17,6 +17,7 @@ namespace Modulo7
             //Ejercicio4A();
             //Ejercicio4B();
             //Ejercicio4C();
+            Ejercicio5();
 
             Console.ReadLine();
         }
@@ -434,6 +435,199 @@ namespace Modulo7
             }
 
             Console.WriteLine("----- Ejercicio 4C: final -----");
+        }
+
+        public static void Ejercicio5()
+        {
+            Console.WriteLine("----- Ejercicio 5: inicio -----");
+
+            bool next_action = true;
+            PersonaM7Collection PersColl = new PersonaM7Collection();
+
+            while (next_action)
+            {
+                Console.WriteLine("Seleccione modo:\n1 - Añadir persona\n2 - Modificar persona\n3 - Ver persona\n4 - Eliminar persona\n5 - Buscar persona\n6 - Finalizar programa ");
+
+                int mode = 0;
+                int pos = 0;
+                int confirm_delete = 0;
+                string nombre = "", apellidos = "", dni = "", searchtxt = "";
+                bool okInput = false;
+
+                while (!okInput)
+                {
+                    okInput = int.TryParse(Console.ReadLine(), out mode);
+
+                    if (!okInput)
+                    {
+                        Console.WriteLine("Entrada diferente de valor entero");
+                    }
+                }
+                
+                //Resetear variable
+                okInput = false;
+
+                switch (mode)
+                {
+                    //Añadir
+                    case 1:
+                        while (string.IsNullOrWhiteSpace(nombre))
+                        {
+                            Console.Write("Introduzca nombre: ");
+                            nombre = Console.ReadLine();
+                        }
+
+                        while (string.IsNullOrWhiteSpace(apellidos))
+                        {
+                            Console.Write("Introduzca apellidos: ");
+                            apellidos = Console.ReadLine();
+                        }
+
+                        while (string.IsNullOrWhiteSpace(dni))
+                        {
+                            Console.Write("Introduzca DNI: ");
+                            dni = Console.ReadLine();
+                        }
+
+                        PersColl.Add(new PersonaM7(nombre, apellidos, dni));
+
+                        break;
+                    //Modificar
+                    case 2:
+
+                        while (!okInput)
+                        {
+                            Console.Write("Introduzca posición: ");
+                            okInput = int.TryParse(Console.ReadLine(), out pos);
+
+                            if (!okInput)
+                            {
+                                Console.WriteLine("Entrada diferente de valor entero");
+                            }
+                            else if(pos > PersColl.Count - 1)
+                            {
+                                Console.WriteLine("Posición fuera de rango");
+                                okInput = false;
+                            }
+                        }
+
+                        //Resetear variable
+                        okInput = false;
+
+                        while (string.IsNullOrWhiteSpace(nombre))
+                        {
+                            Console.Write("Introduzca nombre: ");
+                            nombre = Console.ReadLine();
+                        }
+
+                        while (string.IsNullOrWhiteSpace(apellidos))
+                        {
+                            Console.Write("Introduzca apellidos: ");
+                            apellidos = Console.ReadLine();
+                        }
+
+                        while (string.IsNullOrWhiteSpace(dni))
+                        {
+                            Console.Write("Introduzca DNI: ");
+                            dni = Console.ReadLine();
+                        }
+
+                        PersColl[pos].Nombre = nombre;
+                        PersColl[pos].Apellidos = apellidos;
+                        PersColl[pos].DNI = dni;
+
+                        break;
+                    //Ver
+                    case 3:
+
+                        while (!okInput)
+                        {
+                            Console.Write("Introduzca posición: ");
+                            okInput = int.TryParse(Console.ReadLine(), out pos);
+
+                            if (!okInput)
+                            {
+                                Console.WriteLine("Entrada diferente de valor entero");
+                            }
+                            else if (pos > PersColl.Count - 1)
+                            {
+                                Console.WriteLine("Posición fuera de rango");
+                                okInput = false;
+                            }
+                        }
+
+                        //Resetear variable
+                        okInput = false;
+
+                        Console.WriteLine(PersColl[pos].ToString());
+
+                        break;
+                    //Eliminar
+                    case 4:
+
+                        while (!okInput)
+                        {
+                            Console.Write("Introduzca posición: ");
+                            okInput = int.TryParse(Console.ReadLine(), out pos);
+
+                            if (!okInput)
+                            {
+                                Console.WriteLine("Entrada diferente de valor entero");
+                            }
+                            else if (pos > PersColl.Count - 1)
+                            {
+                                Console.WriteLine("Posición fuera de rango");
+                                okInput = false;
+                            }
+                        }
+
+                        //Resetear variable
+                        okInput = false;
+                        
+                        while (!okInput)
+                        {
+                            Console.Write("Introduzca 1 para confirmar eliminación: ");
+                            okInput = int.TryParse(Console.ReadLine(), out confirm_delete);
+
+                            if (!okInput)
+                            {
+                                Console.WriteLine("Entrada diferente de valor entero");
+                            }
+                            else if(confirm_delete == 1)
+                            {
+                                PersColl.RemoveAt(pos);
+                                Console.WriteLine("Persona eliminada");
+                            }
+                        }
+
+                        break;
+                    //Buscar
+                    case 5:
+                        Console.Write("Introduzca texto para busqueda (nombre, apellido o DNI): ");
+                        searchtxt = Console.ReadLine();
+
+                        foreach (PersonaM7 item in PersColl)
+                        {
+                            if(item.Nombre.Contains(searchtxt) ||
+                               item.Apellidos.Contains(searchtxt) ||
+                               item.DNI.Contains(searchtxt))
+                            {
+                                Console.WriteLine("Resultado encontrado: " + item.ToString());
+                            }
+                        }
+                        
+                        break;
+                    //Finalizar
+                    case 6:
+                        next_action = false;
+                        break;
+                    default:
+                        Console.WriteLine("Valor fuera de rango. Reinténtelo");
+                        break;
+                }
+            }
+
+            Console.WriteLine("----- Ejercicio 5: final -----");
         }
     }
 }
